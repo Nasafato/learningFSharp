@@ -1,9 +1,9 @@
+// my solution
 let getNextFibNumber last secondToLast =
     last + secondToLast
 
 getNextFibNumber 0 1
 getNextFibNumber 1 1
-
 
 let generateFibNumbersToN n =
     let rec nextFibNumber max sum x y =
@@ -19,3 +19,14 @@ let generateFibNumbersToN n =
     nextFibNumber n 0 0 1
 
 generateFibNumbersToN 4000000
+
+// other solution
+Seq.unfold (fun state ->
+    if (snd state > 4000000) then None
+    else Some(fst state + snd state, (snd state, fst state + snd state))) (0, 1)
+|> Seq.filter (fun number -> number % 2 = 0)
+|> Seq.fold (+) 0
+
+
+
+
